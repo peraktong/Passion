@@ -1,5 +1,5 @@
 # Passion
- An anomaly detection model for time series data
- Using dataset from https://github.com/numenta/NAB
- Focus on time series data 
- Still under development
+ An anomaly detection model for time series data <br>
+ Using dataset from https://github.com/numenta/NAB <br>
+ Focus on time series data  <br>
+ Still under development <br>
