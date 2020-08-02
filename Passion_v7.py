@@ -746,9 +746,9 @@ def train_step(inp, tar):
 import time
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
 
-EPOCHS = 150
+EPOCHS = 20
 train_dataset = tf.data.Dataset.from_tensor_slices((X_train,y_train))
-batch=32
+batch=4
 
 N = len(y_train)
 
@@ -762,7 +762,9 @@ for epoch in range(EPOCHS):
         tar = np.atleast_2d(tar)
         lo = train_step(inp, tar)
         if i%500==0 and epoch%2==0:
-            X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.3, shuffle=True)
+            # optional:
+            # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
+            
             print("Doing %d (%d) batch in epoch %d "%(i,N//batch,epoch))
 
             #print("Loss",train_loss.result(), "MSE",train_accuracy.result())
