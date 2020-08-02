@@ -746,9 +746,9 @@ def train_step(inp, tar):
 import time
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
 
-EPOCHS = 50
+EPOCHS = 150
 train_dataset = tf.data.Dataset.from_tensor_slices((X_train,y_train))
-batch=4
+batch=32
 
 N = len(y_train)
 
