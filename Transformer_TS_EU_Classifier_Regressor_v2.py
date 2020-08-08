@@ -922,11 +922,11 @@ tpu_strategy = tf.distribute.experimental.TPUStrategy(tpu)
 #Train and save:
 
 import time
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=False)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
 
 EPOCHS = 150
 train_dataset = tf.data.Dataset.from_tensor_slices((X_train,y_train))
-batch=64
+batch=32
 
 N = len(y_train)
 
@@ -939,8 +939,9 @@ for epoch in range(EPOCHS):
         inp, tar=X_train[batch*i:min(batch*i+batch,N),:,0],y_train[batch*i:min(batch*i+batch,N)]
         tar = np.atleast_2d(tar)
         lo = train_step(inp, tar)
-        if i%500==0:
+        if i%500==0 and epoch%2==0:
             print("Doing %d (%d) batch in epoch %d "%(i,N//batch,epoch))
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
 
             #print("Loss",train_loss.result(), "MSE",train_accuracy.result())
             print("MSE",train_accuracy.result())
